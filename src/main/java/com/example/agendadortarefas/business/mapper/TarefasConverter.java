@@ -1,5 +1,7 @@
 package com.example.agendadortarefas.business.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -13,4 +15,8 @@ public interface TarefasConverter {
 	Tarefas paraTarefaEntity (TarefasDTO dto);
 	
 	TarefasDTO paraTarefaDTO(Tarefas entity);
+	
+	List<TarefasDTO> paraListTarefasDto(List<Tarefas> entities);
+
+	List<Tarefas> paraListTarefasEntity(List<TarefasDTO> dtos);
 }

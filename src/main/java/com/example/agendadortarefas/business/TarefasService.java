@@ -1,6 +1,7 @@
 package com.example.agendadortarefas.business;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,14 @@ public class TarefasService {
 		dto.setStatus(StatusNotificacaoEnum.PENDENTE);
 		Tarefas entity =converter.paraTarefaEntity(dto);
 		return converter.paraTarefaDTO(repo.save(entity));
+	}
+	
+	public List<TarefasDTO> buscarTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal){
+		return converter.paraListTarefasDto(repo.findByDataEventoBetween(dataInicial, dataFinal));
+	}
+	
+	public List<TarefasDTO> buscaTarefasPorEmail(String token) {
+		String email = util.extrairEmailToken(token.substring(7));
+		return converter.paraListTarefasDto(repo.findByEmailUsuario(email));
 	}
 }
