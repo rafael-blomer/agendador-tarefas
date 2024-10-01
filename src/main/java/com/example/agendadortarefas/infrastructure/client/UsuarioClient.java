@@ -11,7 +11,8 @@ import com.example.agendadortarefas.business.dto.UsuarioDTO;
 @FeignClient(name = "usuario", url = "${usuario.url}")
 public interface UsuarioClient {
 
-	@GetMapping("/usuario")
-    UsuarioDTO buscaUsuarioPorEmail(@RequestParam("email") String email, @RequestHeader("Authorization") String token);
+    @GetMapping("/usuario")
+    UsuarioDTO buscaUsuarioPorEmail(@RequestParam("email") String email,
+                                    @RequestHeader("Authorization") String token);
 
 }
